@@ -1,0 +1,1594 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d19">
+<title>Memória de Aço | AURIX STUDIOS</title>
+
+<style>
+:root {
+  --bg: #080d19;
+  --panel: #111b2d;
+  --panel2: #17243a;
+  --cyan: #00e5ff;
+  --blue: #397bff;
+  --purple: #a855f7;
+  --gold: #ffd166;
+  --red: #ff496c;
+  --green: #36e6a0;
+  --white: #f4f8ff;
+  --muted: #91a3bd;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 50% 0%, #172b4c 0%, transparent 42%),
+    var(--bg);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+button:active {
+  transform: scale(.96);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.screen {
+  width: 100%;
+  min-height: 100vh;
+  padding: 22px 16px 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: appear .4s ease;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 12px #00e5ff33; }
+  50% { box-shadow: 0 0 28px #00e5ff88; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+@keyframes shine {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ABERTURA AURIX STUDIOS */
+
+#introScreen {
+  justify-content: center;
+  text-align: center;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 48%, #183c68 0%, #0b1428 38%, #050914 78%);
+}
+
+.space-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(2px 2px at 15% 20%, #fff, transparent),
+    radial-gradient(2px 2px at 80% 30%, #00e5ff, transparent),
+    radial-gradient(1px 1px at 35% 75%, #fff, transparent),
+    radial-gradient(2px 2px at 65% 85%, #a855f7, transparent),
+    radial-gradient(1px 1px at 90% 65%, #fff, transparent);
+  background-size: 190px 190px;
+  opacity: .8;
+}
+
+.aurix-symbol {
+  width: 145px;
+  height: 145px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  border: 2px solid #00e5ff88;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: radial-gradient(circle, #164c77, #091426 70%);
+  box-shadow: 0 0 35px #00e5ff55, inset 0 0 30px #397bff44;
+  animation: float 3s ease-in-out infinite;
+}
+
+.aurix-symbol::before {
+  content: "";
+  position: absolute;
+  width: 175px;
+  height: 55px;
+  border: 2px solid #a855f7;
+  border-radius: 50%;
+  transform: rotate(-28deg);
+  box-shadow: 0 0 15px #a855f766;
+}
+
+.aurix-symbol span {
+  font-size: 65px;
+  font-weight: 900;
+  color: var(--cyan);
+  text-shadow: 0 0 20px var(--cyan);
+}
+
+.aurix-name {
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 5px;
+  color: white;
+  text-shadow: 0 0 18px #00e5ff88;
+}
+
+.aurix-subtitle {
+  color: var(--cyan);
+  font-size: 11px;
+  letter-spacing: 5px;
+  margin-top: 9px;
+}
+
+.intro-game-name {
+  margin-top: 48px;
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #fff, var(--cyan), #a855f7, #fff);
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  animation: shine 4s linear infinite;
+}
+
+.intro-tagline {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 3px;
+  margin-top: 12px;
+}
+
+.intro-loading {
+  width: 160px;
+  height: 4px;
+  background: #ffffff18;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 55px;
+}
+
+.intro-loading span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan);
+  animation: loading 2.5s ease-in-out;
+}
+
+@keyframes loading {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* CABEÇALHO E MENU */
+
+.brand {
+  text-align: center;
+  margin: 12px 0 28px;
+}
+
+.brand-small {
+  color: var(--cyan);
+  font-size: 10px;
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+}
+
+.brand h1 {
+  font-size: clamp(29px, 8vw, 43px);
+  font-weight: 900;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  background: linear-gradient(90deg, #fff, var(--cyan), #fff);
+  background-clip: text;
+  color: transparent;
+}
+
+.brand p {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 3px;
+  margin-top: 9px;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+}
+
+.panel {
+  background: linear-gradient(145deg, #15243a, #0e1728);
+  border: 1px solid #ffffff12;
+  border-radius: 19px;
+  padding: 19px;
+  box-shadow: 0 12px 35px #0005;
+  margin-bottom: 15px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px;
+  margin-bottom: 18px;
+}
+
+.stat-card {
+  background: #ffffff08;
+  border: 1px solid #ffffff12;
+  border-radius: 13px;
+  padding: 13px 5px;
+  text-align: center;
+}
+
+.stat-card strong {
+  display: block;
+  font-size: 22px;
+  color: var(--cyan);
+  margin-bottom: 5px;
+}
+
+.stat-card span {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.section-title {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.mode-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 17px;
+  border-radius: 15px;
+  background: #ffffff08;
+  border: 1px solid #ffffff15;
+  color: white;
+  text-align: left;
+  margin-bottom: 10px;
+  transition: .2s;
+}
+
+.mode-button:hover {
+  border-color: var(--cyan);
+  background: #00e5ff12;
+}
+
+.mode-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  background: #00e5ff16;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.mode-info {
+  flex: 1;
+}
+
+.mode-info strong {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.mode-info small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.arrow {
+  color: var(--cyan);
+  font-size: 22px;
+}
+
+.secondary-button {
+  width: 100%;
+  padding: 14px;
+  background: #ffffff0b;
+  border: 1px solid #ffffff18;
+  color: white;
+  border-radius: 12px;
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+.secondary-button:hover {
+  border-color: var(--purple);
+}
+
+.footer {
+  text-align: center;
+  color: #71829b;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-top: auto;
+  padding-top: 25px;
+}
+
+/* ÁREA DE JOGO */
+
+.game-top {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0 20px;
+}
+
+.back-button {
+  background: #ffffff10;
+  color: white;
+  border: 1px solid #ffffff20;
+  border-radius: 10px;
+  padding: 10px 13px;
+  font-size: 12px;
+}
+
+.game-mode-label {
+  color: var(--cyan);
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.game-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px;
+  width: 100%;
+  max-width: 480px;
+  margin-bottom: 18px;
+}
+
+.game-stat {
+  background: #ffffff0a;
+  border-radius: 12px;
+  padding: 12px 5px;
+  text-align: center;
+  border: 1px solid #ffffff12;
+}
+
+.game-stat strong {
+  display: block;
+  font-size: 21px;
+  color: var(--cyan);
+}
+
+.game-stat span {
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+
+.lives {
+  color: var(--red);
+  letter-spacing: 3px;
+  font-size: 17px;
+  margin-top: 5px;
+}
+
+.message {
+  text-align: center;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 14px;
+  font-weight: bold;
+  margin: 8px 0 17px;
+  line-height: 1.5;
+}
+
+.board {
+  width: min(88vw, 370px);
+  aspect-ratio: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 0 auto 22px;
+}
+
+.tile {
+  border-radius: 19px;
+  border: 2px solid #ffffff20;
+  background: linear-gradient(145deg, #1b2b43, #101a2c);
+  color: white;
+  font-size: 32px;
+  box-shadow: inset 0 0 15px #0005, 0 7px 15px #0004;
+  transition: background .12s, transform .12s, box-shadow .12s;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.tile.active {
+  background: linear-gradient(145deg, #00e5ff, #1674ff);
+  border-color: #b8faff;
+  color: #061322;
+  box-shadow: 0 0 28px #00e5ff99, inset 0 0 15px #fff8;
+  transform: scale(.94);
+}
+
+.tile.wrong {
+  background: linear-gradient(145deg, #ff496c, #9f1737);
+  border-color: #ffb1c0;
+  animation: pulse .2s;
+}
+
+.tile:disabled {
+  cursor: default;
+}
+
+.game-controls {
+  width: 100%;
+  max-width: 370px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.control-button {
+  padding: 14px;
+  border-radius: 12px;
+  background: #ffffff0c;
+  border: 1px solid #ffffff20;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.control-button.primary {
+  background: linear-gradient(135deg, #00c8e8, #286dff);
+  color: #04101c;
+  border: none;
+}
+
+/* RECOMPENSAS E RESULTADOS */
+
+.reward-box {
+  width: 100%;
+  max-width: 370px;
+  padding: 20px;
+  border-radius: 17px;
+  background: linear-gradient(145deg, #47320e, #241b12);
+  border: 1px solid #ffd16688;
+  text-align: center;
+  margin: 10px auto 18px;
+  animation: pulse .7s ease;
+}
+
+.reward-box .reward-icon {
+  font-size: 43px;
+  margin-bottom: 9px;
+}
+
+.reward-box h3 {
+  color: var(--gold);
+  font-size: 19px;
+  margin-bottom: 7px;
+}
+
+.reward-box p {
+  color: #f4dfad;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.result-score {
+  font-size: 58px;
+  font-weight: 900;
+  color: var(--cyan);
+  text-align: center;
+  margin: 18px 0 5px;
+  text-shadow: 0 0 20px #00e5ff66;
+}
+
+.result-label {
+  text-align: center;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+.result-message {
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 20px 0;
+}
+
+.achievement {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #ffffff08;
+  margin-bottom: 8px;
+  border: 1px solid #ffffff10;
+}
+
+.achievement-icon {
+  font-size: 24px;
+  filter: grayscale(1);
+  opacity: .45;
+}
+
+.achievement.unlocked .achievement-icon {
+  filter: none;
+  opacity: 1;
+}
+
+.achievement strong {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.achievement small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.achievement.unlocked {
+  border-color: #ffd16655;
+  background: #ffd1660c;
+}
+
+@media (max-width: 360px) {
+  .board { gap: 8px; }
+  .tile { border-radius: 14px; font-size: 27px; }
+  .panel { padding: 14px; }
+  .intro-game-name { font-size: 25px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ABERTURA AURIX STUDIOS -->
+<section id="introScreen" class="screen">
+  <div class="space-stars"></div>
+
+  <div style="position:relative;z-index:2;text-align:center">
+    <div class="aurix-symbol">
+      <span>A</span>
+    </div>
+
+    <div class="aurix-name">AURIX</div>
+    <div class="aurix-subtitle">STUDIOS</div>
+
+    <div class="intro-game-name">MEMÓRIA DE AÇO</div>
+    <div class="intro-tagline">TREINA A TUA MENTE. SUPERA OS TEUS LIMITES.</div>
+
+    <div class="intro-loading">
+      <span></span>
+    </div>
+  </div>
+</section>
+
+<!-- MENU PRINCIPAL -->
+<section id="homeScreen" class="screen hidden">
+
+  <div class="brand">
+    <div class="brand-small">AURIX STUDIOS APRESENTA</div>
+    <h1>MEMÓRIA DE AÇO</h1>
+    <p>O TEU CÉREBRO É O TEU CAMPO DE BATALHA</p>
+  </div>
+
+  <div class="container">
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <strong id="bestScore">0</strong>
+        <span>MELHOR PONTUAÇÃO</span>
+      </div>
+
+      <div class="stat-card">
+        <strong id="gamesPlayed">0</strong>
+        <span>PARTIDAS</span>
+      </div>
+
+      <div class="stat-card">
+        <strong id="highestLevel">1</strong>
+        <span>NÍVEL MÁXIMO</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="section-title">Escolhe o teu desafio</div>
+
+      <button class="mode-button" onclick="startGame('classic')">
+        <div class="mode-icon">🧠</div>
+        <div class="mode-info">
+          <strong>Modo Clássico</strong>
+          <small>Memoriza sequências cada vez maiores. Tens três vidas para sobreviver.</small>
+        </div>
+        <div class="arrow">›</div>
+      </button>
+
+      <button class="mode-button" onclick="startGame('speed')">
+        <div class="mode-icon">⚡</div>
+        <div class="mode-info">
+          <strong>Modo Velocidade</strong>
+          <small>60 segundos para testar a tua memória e conquistar a maior pontuação.</small>
+        </div>
+        <div class="arrow">›</div>
+      </button>
+    </div>
+
+    <div class="panel">
+      <div class="section-title">As tuas conquistas</div>
+      <div id="achievementList"></div>
+    </div>
+
+    <div class="panel">
+      <div class="section-title">Configurações</div>
+
+      <button class="secondary-button" onclick="toggleSound()" id="soundButton">
+        🔊 Som: Ligado
+      </button>
+
+      <button class="secondary-button" onclick="toggleVibration()" id="vibrationButton">
+        📳 Vibração: Ligada
+      </button>
+    </div>
+
+  </div>
+
+  <div class="footer">AURIX STUDIOS © 2026</div>
+</section>
+
+<!-- ECRÃ DO JOGO -->
+<section id="gameScreen" class="screen hidden">
+
+  <div class="game-top">
+    <button class="back-button" onclick="confirmExit()">← SAIR</button>
+    <div class="game-mode-label" id="gameModeLabel">MODO CLÁSSICO</div>
+    <div style="width:55px"></div>
+  </div>
+
+  <div class="brand" style="margin:0 0 15px">
+    <h1 style="font-size:25px">MEMÓRIA DE AÇO</h1>
+    <p id="gameSubtitle">OBSERVA. MEMORIZA. REPETE.</p>
+  </div>
+
+  <div class="game-stats">
+    <div class="game-stat">
+      <strong id="scoreDisplay">0</strong>
+      <span>PONTOS</span>
+    </div>
+
+    <div class="game-stat">
+      <strong id="roundDisplay">1</strong>
+      <span>RONDA</span>
+    </div>
+
+    <div class="game-stat">
+      <strong id="timerDisplay">∞</strong>
+      <span id="timerLabel">VIDAS</span>
+      <div class="lives" id="livesDisplay">❤️❤️❤️</div>
+    </div>
+  </div>
+
+  <div class="message" id="gameMessage">
+    Prepara-te para o desafio!
+  </div>
+
+  <div class="reward-box hidden" id="rewardBox">
+    <div class="reward-icon" id="rewardIcon">🏆</div>
+    <h3 id="rewardTitle">RECOMPENSA!</h3>
+    <p id="rewardText">Conseguiste superar mais um desafio.</p>
+    <button class="control-button primary"
+      style="margin-top:15px;width:100%"
+      onclick="closeReward()">
+      CONTINUAR
+    </button>
+  </div>
+
+  <div class="board" id="gameBoard">
+    <button class="tile" data-index="0" onclick="playerTap(0)">●</button>
+    <button class="tile" data-index="1" onclick="playerTap(1)">●</button>
+    <button class="tile" data-index="2" onclick="playerTap(2)">●</button>
+    <button class="tile" data-index="3" onclick="playerTap(3)">●</button>
+    <button class="tile" data-index="4" onclick="playerTap(4)">●</button>
+    <button class="tile" data-index="5" onclick="playerTap(5)">●</button>
+    <button class="tile" data-index="6" onclick="playerTap(6)">●</button>
+    <button class="tile" data-index="7" onclick="playerTap(7)">●</button>
+    <button class="tile" data-index="8" onclick="playerTap(8)">●</button>
+  </div>
+
+  <div class="game-controls">
+    <button class="control-button" onclick="repeatSequence()">
+      🔁 REPETIR SEQUÊNCIA
+    </button>
+
+    <button class="control-button primary" onclick="startRound()">
+      ▶ COMEÇAR RONDA
+    </button>
+  </div>
+
+  <div class="footer">
+    AURIX STUDIOS • MEMÓRIA DE AÇO
+  </div>
+</section>
+
+<!-- RESULTADOS -->
+<section id="resultScreen" class="screen hidden">
+
+  <div class="brand">
+    <div class="brand-small">AURIX STUDIOS</div>
+    <h1 id="resultTitle">FIM DE JOGO</h1>
+    <p>O TEU DESEMPENHO</p>
+  </div>
+
+  <div class="container">
+
+    <div class="panel">
+      <div class="result-label">PONTUAÇÃO FINAL</div>
+      <div class="result-score" id="finalScore">0</div>
+      <div class="result-message" id="resultMessage">
+        Cada desafio é uma oportunidade para evoluir.
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <strong id="finalRound">0</strong>
+          <span>RONDA</span>
+        </div>
+
+        <div class="stat-card">
+          <strong id="finalBest">0</strong>
+          <span>RECORDE</span>
+        </div>
+
+        <div class="stat-card">
+          <strong id="finalCombo">0</strong>
+          <span>MELHOR COMBO</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="mode-button" onclick="restartGame()">
+      <div class="mode-icon">🔄</div>
+      <div class="mode-info">
+        <strong>Jogar novamente</strong>
+        <small>Mais uma oportunidade para bater o teu recorde.</small>
+      </div>
+      <div class="arrow">›</div>
+    </button>
+
+    <button class="secondary-button" onclick="goHome()">
+      VOLTAR AO MENU
+    </button>
+
+  </div>
+
+  <div class="footer">AURIX STUDIOS © 2026</div>
+</section>
+
+<!-- O JAVASCRIPT COMEÇA NA PARTE 3 -->
+<script>
+
+// ==========================================
+// MEMÓRIA DE AÇO
+// AURIX STUDIOS
+// SISTEMA PRINCIPAL DO JOGO
+// ==========================================
+
+const $ = id => document.getElementById(id);
+
+const tiles = [...document.querySelectorAll(".tile")];
+
+let gameMode = "classic";
+let sequence = [];
+let playerSequence = [];
+let score = 0;
+let round = 1;
+let lives = 3;
+let combo = 0;
+let bestCombo = 0;
+let speedTime = 60;
+
+let isPlaying = false;
+let isShowingSequence = false;
+let isGameOver = false;
+let waitingForPlayer = false;
+let rewardActive = false;
+
+let speedInterval = null;
+let sequenceTimeouts = [];
+
+let soundEnabled = true;
+let vibrationEnabled = true;
+
+const achievements = [
+  {
+    id: "first",
+    icon: "🎯",
+    name: "Primeiro passo",
+    description: "Completa a tua primeira ronda.",
+    condition: () => round > 1 || score > 0
+  },
+  {
+    id: "five",
+    icon: "🔥",
+    name: "Mente resistente",
+    description: "Alcança a quinta ronda.",
+    condition: () => round >= 5
+  },
+  {
+    id: "ten",
+    icon: "🧠",
+    name: "Memória de aço",
+    description: "Alcança a décima ronda.",
+    condition: () => round >= 10
+  },
+  {
+    id: "combo",
+    icon: "⚡",
+    name: "Combo poderoso",
+    description: "Conquista um combo de cinco.",
+    condition: () => bestCombo >= 5
+  },
+  {
+    id: "score",
+    icon: "👑",
+    name: "Lenda mental",
+    description: "Alcança 1000 pontos.",
+    condition: () => score >= 1000
+  }
+];
+
+let unlockedAchievements =
+  JSON.parse(localStorage.getItem("acoAchievements") || "[]");
+
+let savedBest = Number(localStorage.getItem("acoBest") || 0);
+let savedGames = Number(localStorage.getItem("acoGames") || 0);
+let savedLevel = Number(localStorage.getItem("acoLevel") || 1);
+
+// ==========================================
+// ARMAZENAMENTO
+// ==========================================
+
+function saveProgress() {
+  localStorage.setItem("acoBest", savedBest);
+  localStorage.setItem("acoGames", savedGames);
+  localStorage.setItem("acoLevel", savedLevel);
+  localStorage.setItem(
+    "acoAchievements",
+    JSON.stringify(unlockedAchievements)
+  );
+}
+
+function updateHomeStats() {
+  $("bestScore").textContent = savedBest;
+  $("gamesPlayed").textContent = savedGames;
+  $("highestLevel").textContent = savedLevel;
+
+  renderAchievements();
+}
+
+function renderAchievements() {
+  const list = $("achievementList");
+  list.innerHTML = "";
+
+  achievements.forEach(item => {
+    const unlocked = unlockedAchievements.includes(item.id);
+
+    const div = document.createElement("div");
+    div.className = "achievement" + (unlocked ? " unlocked" : "");
+
+    div.innerHTML = `
+      <div class="achievement-icon">${item.icon}</div>
+      <div>
+        <strong>${item.name}</strong>
+        <small>${item.description}</small>
+      </div>
+      <div style="margin-left:auto;color:${unlocked ? "#ffd166" : "#71829b"}">
+        ${unlocked ? "✓" : "🔒"}
+      </div>
+    `;
+
+    list.appendChild(div);
+  });
+}
+
+function checkAchievements() {
+  let newUnlock = null;
+
+  achievements.forEach(item => {
+    if (
+      !unlockedAchievements.includes(item.id) &&
+      item.condition()
+    ) {
+      unlockedAchievements.push(item.id);
+      newUnlock = item;
+    }
+  });
+
+  if (newUnlock) {
+    saveProgress();
+    renderAchievements();
+
+    $("rewardIcon").textContent = newUnlock.icon;
+    $("rewardTitle").textContent = "NOVA CONQUISTA!";
+    $("rewardText").textContent =
+      newUnlock.name + " desbloqueada! " + newUnlock.description;
+
+    showReward();
+  }
+}
+
+// ==========================================
+// SOM E VIBRAÇÃO
+// ==========================================
+
+let audioContext = null;
+
+function playSound(frequency = 440, duration = 0.12) {
+  if (!soundEnabled) return;
+
+  try {
+    audioContext = audioContext ||
+      new (window.AudioContext || window.webkitAudioContext)();
+
+    if (audioContext.state === "suspended") {
+      audioContext.resume();
+    }
+
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+
+    oscillator.type = "sine";
+    oscillator.frequency.value = frequency;
+
+    gain.gain.setValueAtTime(0.13, audioContext.currentTime);
+    gain.gain.exponentialRampToValueAtTime(
+      0.001,
+      audioContext.currentTime + duration
+    );
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + duration);
+  } catch (error) {
+    console.log("Áudio indisponível");
+  }
+}
+
+function vibrate(pattern = 35) {
+  if (vibrationEnabled && navigator.vibrate) {
+    navigator.vibrate(pattern);
+  }
+}
+
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+
+  $("soundButton").textContent =
+    soundEnabled ? "🔊 Som: Ligado" : "🔇 Som: Desligado";
+
+  playSound(550);
+}
+
+function toggleVibration() {
+  vibrationEnabled = !vibrationEnabled;
+
+  $("vibrationButton").textContent =
+    vibrationEnabled ? "📳 Vibração: Ligada" : "📴 Vibração: Desligada";
+
+  vibrate(40);
+}
+
+// ==========================================
+// NAVEGAÇÃO
+// ==========================================
+
+function showScreen(screenId) {
+  ["introScreen", "homeScreen", "gameScreen", "resultScreen"]
+    .forEach(id => $(id).classList.add("hidden"));
+
+  $(screenId).classList.remove("hidden");
+}
+
+function goHome() {
+  stopTimers();
+  isPlaying = false;
+  isShowingSequence = false;
+  waitingForPlayer = false;
+  isGameOver = false;
+  rewardActive = false;
+
+  showScreen("homeScreen");
+  updateHomeStats();
+}
+
+function stopTimers() {
+  if (speedInterval) {
+    clearInterval(speedInterval);
+    speedInterval = null;
+  }
+
+  sequenceTimeouts.forEach(clearTimeout);
+  sequenceTimeouts = [];
+}
+
+function confirmExit() {
+  if (confirm("Queres sair desta partida? O progresso desta partida será perdido.")) {
+    stopTimers();
+    goHome();
+  }
+}
+
+// ==========================================
+// INICIAR PARTIDA
+// ==========================================
+
+function startGame(mode) {
+  stopTimers();
+
+  gameMode = mode;
+  sequence = [];
+  playerSequence = [];
+
+  score = 0;
+  round = 1;
+  lives = 3;
+  combo = 0;
+  bestCombo = 0;
+  speedTime = 60;
+
+  isPlaying = true;
+  isShowingSequence = false;
+  isGameOver = false;
+  waitingForPlayer = false;
+  rewardActive = false;
+
+  $("gameModeLabel").textContent =
+    mode === "classic" ? "MODO CLÁSSICO" : "MODO VELOCIDADE";
+
+  $("gameSubtitle").textContent =
+    mode === "classic"
+      ? "OBSERVA. MEMORIZA. REPETE."
+      : "60 SEGUNDOS. MÁXIMA CONCENTRAÇÃO.";
+
+  $("timerLabel").textContent =
+    mode === "classic" ? "VIDAS" : "TEMPO";
+
+  $("timerDisplay").textContent =
+    mode === "classic" ? "∞" : speedTime;
+
+  $("livesDisplay").textContent =
+    mode === "classic" ? "❤️❤️❤️" : "⚡";
+
+  $("scoreDisplay").textContent = "0";
+  $("roundDisplay").textContent = "1";
+
+  $("rewardBox").classList.add("hidden");
+  $("gameBoard").classList.remove("hidden");
+
+  tiles.forEach(tile => {
+    tile.classList.remove("active", "wrong");
+    tile.disabled = false;
+  });
+
+  showScreen("gameScreen");
+
+  if (mode === "speed") {
+    startSpeedTimer();
+  }
+
+  setMessage(
+    mode === "classic"
+      ? "Prepara a tua memória. Vamos começar!"
+      : "Tens 60 segundos. Mostra do que és capaz!"
+  );
+
+  setTimeout(startRound, 900);
+}
+
+// ==========================================
+// MENSAGENS
+// ==========================================
+
+function setMessage(text) {
+  $("gameMessage").textContent = text;
+}
+
+// ==========================================
+// DIFICULDADE PROGRESSIVA
+// ==========================================
+
+function getSequenceSpeed() {
+  if (round <= 3) return 650;
+  if (round <= 6) return 520;
+  if (round <= 10) return 420;
+  if (round <= 15) return 340;
+  return 270;
+}
+
+function getSequenceLength() {
+  return Math.min(2 + round, 30);
+}
+
+// ==========================================
+// COMEÇAR RONDA
+// ==========================================
+
+function startRound() {
+  if (!isPlaying || isGameOver || rewardActive) return;
+  if (isShowingSequence) return;
+
+  playerSequence = [];
+  sequence = [];
+
+  const length = getSequenceLength();
+
+  for (let i = 0; i < length; i++) {
+    sequence.push(Math.floor(Math.random() * 9));
+  }
+
+  $("roundDisplay").textContent = round;
+  $("scoreDisplay").textContent = score;
+
+  $("livesDisplay").textContent =
+    gameMode === "classic"
+      ? "❤️".repeat(lives) + "🖤".repeat(3 - lives)
+      : "⚡";
+
+  setMessage("Observa a sequência com atenção...");
+
+  showSequence();
+}
+
+// ==========================================
+// MOSTRAR SEQUÊNCIA
+// ==========================================
+
+function showSequence() {
+  if (!isPlaying || isGameOver) return;
+
+  isShowingSequence = true;
+  waitingForPlayer = false;
+
+  tiles.forEach(tile => tile.disabled = true);
+
+  const speed = getSequenceSpeed();
+  let index = 0;
+
+  function illuminateNext() {
+    if (!isPlaying || isGameOver) return;
+
+    if (index >= sequence.length) {
+      isShowingSequence = false;
+      waitingForPlayer = true;
+
+      tiles.forEach(tile => tile.disabled = false);
+
+      setMessage("Agora é a tua vez! Repete a sequência.");
+
+      return;
+    }
+
+    const tileIndex = sequence[index];
+    const tile = tiles[tileIndex];
+
+    tile.classList.add("active");
+
+    playSound(260 + tileIndex * 65, 0.17);
+
+    const onTime = setTimeout(() => {
+      tile.classList.remove("active");
+
+      const offTime = setTimeout(() => {
+        index++;
+        illuminateNext();
+      }, Math.max(110, speed * 0.22));
+
+      sequenceTimeouts.push(offTime);
+    }, speed * 0.65);
+
+    sequenceTimeouts.push(onTime);
+  }
+
+  illuminateNext();
+}
+
+// ==========================================
+// REPETIR SEQUÊNCIA
+// ==========================================
+
+function repeatSequence() {
+  if (!isPlaying || isGameOver || rewardActive) return;
+  if (isShowingSequence) return;
+
+  playerSequence = [];
+  showSequence();
+}
+
+// ==========================================
+// JOGADOR TOCA NOS BOTÕES
+// ==========================================
+
+function playerTap(index) {
+  if (!isPlaying || isGameOver || isShowingSequence) return;
+  if (!waitingForPlayer || rewardActive) return;
+
+  const tile = tiles[index];
+
+  tile.classList.add("active");
+  playSound(350 + index * 70, 0.1);
+  vibrate(25);
+
+  setTimeout(() => tile.classList.remove("active"), 130);
+
+  playerSequence.push(index);
+
+  const currentPosition = playerSequence.length - 1;
+
+  if (playerSequence[currentPosition] !== sequence[currentPosition]) {
+    handleWrongAnswer(index);
+    return;
+  }
+
+  combo++;
+  bestCombo = Math.max(bestCombo, combo);
+
+  const comboBonus = Math.min(combo, 10) * 2;
+
+  score += 10 + comboBonus;
+
+  $("scoreDisplay").textContent = score;
+
+  if (playerSequence.length === sequence.length) {
+    completeRound();
+  }
+}
+
+// ==========================================
+// RESPOSTA ERRADA E SISTEMA DE VIDAS
+// ==========================================
+
+function handleWrongAnswer(index) {
+  combo = 0;
+
+  const tile = tiles[index];
+  tile.classList.add("wrong");
+
+  playSound(130, 0.35);
+  vibrate([100, 60, 100]);
+
+  setTimeout(() => tile.classList.remove("wrong"), 450);
+
+  waitingForPlayer = false;
+
+  if (gameMode === "classic") {
+    lives--;
+
+    $("livesDisplay").textContent =
+      "❤️".repeat(lives) + "🖤".repeat(3 - lives);
+
+    if (lives <= 0) {
+      setMessage("As tuas três vidas acabaram!");
+      setTimeout(endGame, 800);
+      return;
+    }
+
+    setMessage("Resposta errada! Perdeste uma vida. Tenta novamente.");
+
+    setTimeout(() => {
+      if (!isPlaying || isGameOver) return;
+      playerSequence = [];
+      showSequence();
+    }, 1100);
+
+  } else {
+    setMessage("Resposta errada! Perdes a sequência desta ronda.");
+
+    setTimeout(() => {
+      if (!isPlaying || isGameOver) return;
+      playerSequence = [];
+      showSequence();
+    }, 800);
+  }
+}
+
+// ==========================================
+// RONDA CONCLUÍDA
+// ==========================================
+
+function completeRound() {
+  waitingForPlayer = false;
+  isShowingSequence = false;
+
+  const bonus = round * 15;
+  score += bonus;
+
+  $("scoreDisplay").textContent = score;
+
+  playSound(720, 0.2);
+  vibrate([40, 50, 80]);
+
+  setMessage(
+    "Excelente! Ronda " + round +
+    " concluída. Bónus: +" + bonus + " pontos."
+  );
+
+  checkAchievements();
+
+  if (gameMode === "classic" && round % 5 === 0) {
+    setTimeout(() => {
+      if (!isPlaying || isGameOver) return;
+      showMilestoneReward();
+    }, 700);
+
+    return;
+  }
+
+  round++;
+  $("roundDisplay").textContent = round;
+
+  if (round > savedLevel) {
+    savedLevel = round;
+    saveProgress();
+  }
+
+  setTimeout(() => {
+    if (!isPlaying || isGameOver || rewardActive) return;
+    startRound();
+  }, 1100);
+}
+
+// ==========================================
+// RECOMPENSAS A CADA CINCO RONDAS
+// ==========================================
+
+function showMilestoneReward() {
+  rewardActive = true;
+  waitingForPlayer = false;
+
+  $("rewardIcon").textContent = "🏆";
+  $("rewardTitle").textContent = "RECOMPENSA ESPECIAL!";
+  $("rewardText").textContent =
+    "Superaste " + round +
+    " rondas! Ganhaste uma vida extra e 100 pontos.";
+
+  if (lives < 3) {
+    lives++;
+  }
+
+  score += 100;
+
+  $("scoreDisplay").textContent = score;
+
+  $("livesDisplay").textContent =
+    "❤️".repeat(lives) + "🖤".repeat(3 - lives);
+
+  showReward();
+}
+
+function showReward() {
+  rewardActive = true;
+  $("rewardBox").classList.remove("hidden");
+  $("gameBoard").classList.add("hidden");
+
+  playSound(880, 0.3);
+  vibrate([80, 60, 120]);
+}
+
+function closeReward() {
+  $("rewardBox").classList.add("hidden");
+  $("gameBoard").classList.remove("hidden");
+
+  rewardActive = false;
+
+  if (gameMode === "classic" && round % 5 === 0) {
+    round++;
+    $("roundDisplay").textContent = round;
+  }
+
+  checkAchievements();
+
+  if (!rewardActive) {
+    setTimeout(() => {
+      if (isPlaying && !isGameOver) {
+        startRound();
+      }
+    }, 500);
+  }
+}
+
+// ==========================================
+// MODO VELOCIDADE
+// ==========================================
+
+function startSpeedTimer() {
+  clearInterval(speedInterval);
+
+  speedInterval = setInterval(() => {
+    if (!isPlaying || isGameOver) return;
+
+    speedTime--;
+
+    $("timerDisplay").textContent = speedTime;
+
+    if (speedTime <= 10) {
+      $("timerDisplay").style.color = "var(--red)";
+    }
+
+    if (speedTime <= 0) {
+      clearInterval(speedInterval);
+      speedInterval = null;
+      endGame();
+    }
+  }, 1000);
+}
+
+// ==========================================
+// FIM DE JOGO
+// ==========================================
+
+function endGame() {
+  if (isGameOver) return;
+
+  isGameOver = true;
+  isPlaying = false;
+  waitingForPlayer = false;
+  isShowingSequence = false;
+  rewardActive = false;
+
+  stopTimers();
+
+  savedGames++;
+
+  const newRecord = score > savedBest;
+
+  if (newRecord) {
+    savedBest = score;
+  }
+
+  if (round > savedLevel) {
+    savedLevel = round;
+  }
+
+  saveProgress();
+
+  $("finalScore").textContent = score;
+  $("finalRound").textContent = Math.max(0, round - 1);
+  $("finalBest").textContent = savedBest;
+  $("finalCombo").textContent = bestCombo;
+
+  $("resultTitle").textContent =
+    newRecord ? "NOVO RECORDE!" : "FIM DE JOGO";
+
+  let message = "";
+
+  if (newRecord) {
+    message = "🏆 Extraordinário! Conquistaste um novo recorde!";
+  } else if (score >= 1000) {
+    message = "A tua memória está a ganhar força. Continua a treinar!";
+  } else if (score >= 500) {
+    message = "Bom trabalho! Estás a desenvolver a tua concentração.";
+  } else if (score > 0) {
+    message = "Cada tentativa conta. Descansa e volta mais forte!";
+  } else {
+    message = "O primeiro passo é começar. Tenta novamente!";
+  }
+
+  $("resultMessage").textContent = message;
+
+  updateHomeStats();
+  showScreen("resultScreen");
+
+  playSound(newRecord ? 950 : 180, 0.4);
+  vibrate(newRecord ? [100, 60, 100, 60, 200] : 150);
+}
+
+// ==========================================
+// REINICIAR
+// ==========================================
+
+function restartGame() {
+  startGame(gameMode);
+}
+
+// ==========================================
+// PROTEÇÃO CONTRA CLIQUES DURANTE ANIMAÇÕES
+// ==========================================
+
+function resetTiles() {
+  tiles.forEach(tile => {
+    tile.classList.remove("active", "wrong");
+    tile.disabled = false;
+  });
+}
+
+// ==========================================
+// INICIALIZAÇÃO
+// ==========================================
+
+function initializeGame() {
+  updateHomeStats();
+
+  $("soundButton").textContent =
+    soundEnabled ? "🔊 Som: Ligado" : "🔇 Som: Desligado";
+
+  $("vibrationButton").textContent =
+    vibrationEnabled ? "📳 Vibração: Ligada" : "📴 Vibração: Desligada";
+
+  showScreen("introScreen");
+
+  setTimeout(() => {
+    showScreen("homeScreen");
+    updateHomeStats();
+  }, 3000);
+}
+
+window.addEventListener("load", initializeGame);
+
+</script>
+</body>
+</html>
